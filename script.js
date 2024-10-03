@@ -53,9 +53,49 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       if (layout[i] === 1) {
-        squares[i].classList.add("empty-space").stlye("none");
+        squares[i].classList.add("empty-space");
       }
     }
   }
   createBoard();
+
+
+  let snakeCurrentIndex = 490;
+squares[snakeCurrentIndex].classList.add("snake");
+
+function moveSnake(e) {
+  // Remove snake class from current position
+  squares[snakeCurrentIndex].classList.remove("snake");
+
+  switch (e.key) {
+    case "ArrowLeft":
+      if (snakeCurrentIndex % 20 !== 0 && !squares[snakeCurrentIndex - 1].classList.contains("game-border")) {
+        snakeCurrentIndex -= 1;
+      }
+      break;
+    case "ArrowRight":
+      if (snakeCurrentIndex % 20 < 19 && !squares[snakeCurrentIndex + 1].classList.contains("game-border")) {
+        snakeCurrentIndex += 1;
+      }
+      break;
+    case "ArrowUp":
+      if (snakeCurrentIndex - 20 >= 0 && !squares[snakeCurrentIndex - 20].classList.contains("game-border")) {
+        snakeCurrentIndex -= 20;
+      }
+      break;
+    case "ArrowDown":
+      if (snakeCurrentIndex + 20 < squares.length && !squares[snakeCurrentIndex + 20].classList.contains("game-border")) {
+        snakeCurrentIndex += 20;
+      }
+      break;
+  }
+
+  // Add snake class to new position
+  squares[snakeCurrentIndex].classList.add("snake");
+}
+
+// Add event listener for key presses
+document.addEventListener("keydown", moveSnake);
+
+
 });

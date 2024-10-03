@@ -13,7 +13,6 @@ body {
 .game-container {
   width: 560px;
   height: 560px;
-  border: solid black;
   flex-wrap: wrap;
   display: flex;
 }
@@ -29,6 +28,6 @@ body {
   background-color: aqua;
 }
 
-.empty-space {
-  background-color: blueviolet;
+.snake {
+  background-color: green;
 }
